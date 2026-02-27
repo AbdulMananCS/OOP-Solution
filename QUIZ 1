@@ -96,17 +96,21 @@ public:
 int main()
 {
     Book b1("C++ Programming",101,"David ",500,"Education");
+    Book b2("Java learn",202,"Smith ",700,"Education");
     Magazine m1("Tech Monthly",102,"John ",45,"January");
-    Audio_Book a1("Learn OOP",103,"Jane ",10.5,"Alex Brown");
-
+    Magazine m2("DAY TO DAY ",102,"ALEX ",46,"January");
+    Audio_Book a1("Learn OOP",103,"SHAYAN ",10.5,"Brown ");
+    Audio_Book a2("Learn class",103,"SHAYAN ",10.5,"Brown ");
     cout<<" Book "<<endl;
     b1.display();
+    b2.display();
 
     cout<<"\nMagazine "<<endl;
     m1.display();
+    m2.display();
 
     cout<<"\n Audio Book "<<endl;
     a1.display();
-
+    a2.display();
     return 0;
 }
