@@ -1,0 +1,106 @@
+#include<iostream>
+using namespace std;
+
+class library{
+    
+protected:
+    string title;
+    int id;
+    string author;
+        
+public:
+    library(string title,int id,string author)
+    {
+        this->title=title;
+        this->id=id;
+        this->author=author;
+    }
+
+    virtual void display()
+    {
+        cout<<"Title: "<<title<<endl;
+        cout<<"ID: "<<id<<endl;
+        cout<<"Author: "<<author<<endl;
+    }
+};
+
+class Book: public library
+{    
+    int page;
+    string Genre;
+
+public:
+    Book(string title,int id,string author,int page,string Genre)
+        : library(title,id,author)
+    {
+        this->page=page;
+        this->Genre=Genre;
+    }
+                
+    void display() override
+    {
+        library::display();
+        cout<<"Pages: "<<page<<endl;
+        cout<<"Genre: "<<Genre<<endl;
+    }
+};
+
+class Magazine: public library
+{    
+    int issue_num;
+    string month_of_pub;
+
+public:
+    Magazine(string title,int id,string author,int issue_num,string month_of_pub)
+        : library(title,id,author)
+    {
+        this->issue_num=issue_num;
+        this->month_of_pub=month_of_pub;
+    }
+
+    void display() override
+    {
+        library::display();
+        cout<<"Issue Number: "<<issue_num<<endl;
+        cout<<"Month of Publication: "<<month_of_pub<<endl;
+    }
+};
+
+class Audio_Book: public library
+{
+    float duration;
+    string narrator_name;
+
+public:
+    Audio_Book(string title,int id,string author,float duration,string narrator_name)
+        : library(title,id,author)
+    {
+        this->duration=duration;
+        this->narrator_name=narrator_name;
+    }
+
+    void display() override
+    {
+        library::display();
+        cout<<"Duration: "<<duration<<" hours"<<endl;
+        cout<<"Narrator: "<<narrator_name<<endl;
+    }
+};
+
+int main()
+{
+    Book b1("C++ Programming",101,"Bjarne Stroustrup",500,"Education");
+    Magazine m1("Tech Monthly",102,"John Smith",45,"January");
+    Audio_Book a1("Learn OOP",103,"Jane Doe",10.5,"Alex Brown");
+
+    cout<<" Book "<<endl;
+    b1.display();
+
+    cout<<"\nMagazine "<<endl;
+    m1.display();
+
+    cout<<"\n Audio Book "<<endl;
+    a1.display();
+
+    return 0;
+}
