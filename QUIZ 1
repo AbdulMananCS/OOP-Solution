@@ -39,7 +39,9 @@ public:
                 
     void display() override
     {
-        library::display();
+    	cout<<"Title: "<<title<<endl;
+        cout<<"ID: "<<id<<endl;
+        cout<<"Author: "<<author<<endl;
         cout<<"Pages: "<<page<<endl;
         cout<<"Genre: "<<Genre<<endl;
     }
@@ -60,7 +62,9 @@ public:
 
     void display() override
     {
-        library::display();
+        cout<<"Title: "<<title<<endl;
+        cout<<"ID: "<<id<<endl;
+        cout<<"Author: "<<author<<endl;
         cout<<"Issue Number: "<<issue_num<<endl;
         cout<<"Month of Publication: "<<month_of_pub<<endl;
     }
@@ -81,7 +85,9 @@ public:
 
     void display() override
     {
-        library::display();
+    	cout<<"Title: "<<title<<endl;
+        cout<<"ID: "<<id<<endl;
+        cout<<"Author: "<<author<<endl;
         cout<<"Duration: "<<duration<<" hours"<<endl;
         cout<<"Narrator: "<<narrator_name<<endl;
     }
@@ -89,9 +95,9 @@ public:
 
 int main()
 {
-    Book b1("C++ Programming",101,"Bjarne Stroustrup",500,"Education");
-    Magazine m1("Tech Monthly",102,"John Smith",45,"January");
-    Audio_Book a1("Learn OOP",103,"Jane Doe",10.5,"Alex Brown");
+    Book b1("C++ Programming",101,"David ",500,"Education");
+    Magazine m1("Tech Monthly",102,"John ",45,"January");
+    Audio_Book a1("Learn OOP",103,"Jane ",10.5,"Alex Brown");
 
     cout<<" Book "<<endl;
     b1.display();
