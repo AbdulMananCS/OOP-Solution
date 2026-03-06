@@ -1,0 +1,42 @@
+#include<iostream>
+
+using namespace std;
+
+class smartdelivery{
+protected:
+		
+int id;
+string name;
+double cost;
+public:
+	void display(int id,string name,double cost)
+	{	cout<<"	Normal Delivery "<<endl;
+		cout<<"ID  :"<<id<<endl;
+		cout<<"Name  :"<<name<<endl;
+		cout<<"Cost  :"<<cost<<"\n\n\n";
+	}
+
+};
+
+class Expressdelivery:public smartdelivery
+{
+	private:
+	string prioritylevel;
+	public:
+
+		using smartdelivery::display;
+	void display(int id,string name,double cost,string prioritylevel ) 
+	{	cout<<"	Express Delivery "<<endl;
+		cout<<"ID  :"<<id<<endl;
+		cout<<"Name  :"<<name<<endl;
+		cout<<"Cost  :"<<cost<<endl;
+		cout<<"Priority Level  :"<<prioritylevel<<"\n\n\n";
+	}
+};
+int main()
+{
+	Expressdelivery ED;
+	
+	ED.display(101,"manan",1000,"high");
+	ED.display(101,"Ali",700);
+}
