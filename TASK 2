@@ -1,0 +1,179 @@
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+class Hero{
+	protected:
+		string name;
+		string type;
+		int health;
+		int power;
+		int exp;
+		
+	public:
+		Hero(string n,string t,int h,int p, int e){   //constructor
+			name=n;
+			type=t;
+			health=h;
+			power=p;
+			exp=e;
+		}
+		
+		void displayWelcome(){
+			cout<<"		====WELCOME TO THE GAME!====="<<endl;
+		}
+		
+		void displayCommon(){            //common info
+			cout<<left<<setw(20)<<"Hero Name: "<<name<<endl;
+			cout<<left<<setw(20)<<"Type: "<<type<<endl;
+			cout<<left<<setw(20)<<"Health: "<<health<<endl;
+			cout<<left<<setw(20)<<"Power: "<<power<<endl;
+			cout<<left<<setw(20)<<"Experience: "<<exp<<endl;
+			
+		}
+		
+		virtual double attack()=0;    //pure virtual functions
+		virtual double defend()=0;
+		
+};
+
+class Warrior: public Hero{
+	protected:
+		string weapon;
+		int armor;
+		double rage;
+		
+	public:
+		Warrior(string n,string t,int h,int p,int e,string w,int a,double r):Hero(n,t,h,p,e){
+			weapon=w;
+			armor=a;
+			rage=r;
+		}
+		
+		void display(){
+			displayCommon();    //call function for displaying common info
+			cout<<left<<setw(20)<<"Weapon: "<<weapon<<endl;
+			cout<<left<<setw(20)<<"Armor: "<<armor<<endl;
+			cout<<left<<setw(20)<<"Rage: "<<rage<<endl;
+		}
+		
+		double attack(){
+			return (power*rage)/100;
+		}
+		
+		double defend(){
+			return (armor*0.40)+(health*0.10);
+		}
+};
+
+class Mage: public Hero{
+	protected:
+		string spell;
+		int mana;
+		double multiplier;
+		
+	public:
+		Mage(string n,string t,int h,int p,int e,string s,int m,double mul):Hero(n,t,h,p,e){
+			spell=s;
+			mana=m;
+			multiplier=mul;
+		}
+		
+		void display(){
+			displayCommon();
+			cout<<left<<setw(20)<<"Spell Nmae: "<<spell<<endl;
+			cout<<left<<setw(20)<<"Mana Points: "<<mana<<endl;
+			cout<<left<<setw(20)<<"Magic Multiplier: "<<multiplier<<endl;
+		}
+		
+		double attack(){
+			return power*(mana+multiplier);
+		}
+		
+		double defend(){
+			return (mana*0.20)+(health*0.20);
+		}
+};
+
+class Archer: public Hero{
+	protected:
+    	string bow;
+    	int arrows;
+    	double accuracy;
+
+	public:
+    	Archer(string n,string t,int h,int p,int e,string b,int a,double acc):Hero(n,t,h,p,e){
+        bow=b;
+        arrows=a;
+        accuracy=acc;
+        
+    	}
+
+    	void display(){
+        	displayCommon();
+       		cout<<left<<setw(20)<<"Bow Type: "<<bow<<endl;
+        	cout<<left<<setw(20)<<"Number of Arrows: "<<arrows<<endl;
+        	cout<<left<<setw(20)<<"Accuracy Rate: "<<accuracy<<endl;
+   	 	}
+
+    	double attack(){
+        return power+(accuracy*arrows);
+    	}
+
+    	double defend(){
+        return (arrows*0.40)+(health*0.30);
+    }
+};
+
+int main() {
+
+    Warrior w("Thor","Warrior",300,50,40,"Sword",120,2.0);
+    Mage m("Salvatore","Mage",150,90,50,"Lightening Bolt",100,2.2);
+    Archer a("Harry","Archer",100,80,45,"Crossbow",90,1.8);
+
+    w.displayWelcome();        //displays welcome message
+
+    cout<<"		--------Hero Profiles--------"<<endl;
+
+    cout<<"	<<Warrior>>"<<endl;
+    w.display();                   //displays warrior info
+    double wAttack=w.attack();         //store attack and defense value in a variable
+    double wDefense=w.defend();
+    cout<<setw(20)<<"Attack Value: "<<wAttack<<endl;
+    cout<<setw(20)<<"Defense Value: "<<wDefense<<endl;
+    cout<<"----------------------------------";
+    cout<<endl;
+
+
+    cout<<"	<<Mage>>"<<endl;
+    m.display();                 //displays mage info
+    double mAttack=m.attack();
+    double mDefense=m.defend();
+    cout<<setw(20)<<"Attack Value: "<<mAttack<<endl;
+    cout<<setw(20)<<"Defense Value: "<<mDefense<<endl;
+    cout<<"----------------------------------";
+    cout<<endl;
+
+
+    cout<<"	<<Archer>>"<<endl;
+    a.display();                 //displays archer info
+    double aAttack=a.attack();
+    double aDefense=a.defend();
+    cout<<setw(20)<<"Attack Value: "<<aAttack<<endl;
+    cout<<setw(20)<<"Defense Value: "<<aDefense<<endl;
+    cout<<"----------------------------------";
+    cout<<endl;
+
+    cout<<"	==========Highest Attack:=========="<<endl;
+
+   if(wAttack>mAttack && wAttack>aAttack)
+        cout<<"	Warrior has the highest attack!";
+        
+    else if(mAttack>wAttack && mAttack>aAttack)
+        cout<<"	Mage has the highest attack!";
+        
+    else 
+        cout<<"	Archer has the highest attack!";
+
+    return 0;
+}
